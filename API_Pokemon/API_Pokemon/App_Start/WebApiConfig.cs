@@ -16,8 +16,8 @@ namespace API_Pokemon
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "pokemon/{controller}/{id}",
+                defaults: new { controller = "API", id = RouteParameter.Optional }
             );
         }
     }
