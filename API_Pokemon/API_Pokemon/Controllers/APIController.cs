@@ -112,5 +112,25 @@ namespace API_Pokemon.Controllers
             return response;
 
         }
+
+        // GET pokemon/PokemonByTypeName/TypeName
+        [Route("pokemon/PokemonByTypeName/{TypeName:length(1,17)}")]
+        [HttpGet]
+        public HttpResponseMessage PokemonByTypeName(string TypeName)
+        {
+
+            HttpResponseMessage response;
+
+            List<Pokemon> Pokemons = db.Pokemons.Where(x => x.PokemonType.Description.Equals(TypeName)).ToList();
+
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { Pokemons });
+
+            response = Request.CreateResponse(HttpStatusCode.OK);
+
+            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
+
+            return response;
+
+        }
     }
 }
