@@ -33,6 +33,26 @@ namespace API_Pokemon.Controllers
 
         }
 
+        // GET pokemon/AllTypes/
+        [Route("pokemon/AllTypes")]
+        [HttpGet]
+        public HttpResponseMessage AllTypes()
+        {
+
+            HttpResponseMessage response;
+
+            List<PokemonType> AllTypes = db.PokemonTypes.ToList();
+
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { AllTypes });
+
+            response = Request.CreateResponse(HttpStatusCode.OK);
+
+            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
+
+            return response;
+
+        }
+
         // GET pokemon/PokemonByPodexNumber/PokedexNumber
         [Route("pokemon/PokemonByPodexNumber/{PokedexNumber:int}")]
         [HttpGet]
