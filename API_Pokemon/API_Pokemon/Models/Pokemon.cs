@@ -24,7 +24,7 @@ namespace API_Pokemon.Models
         public bool Evolve { get; set; }
 
         [Required]
-        public bool Rare { get; set; }
+        public bool Legendary { get; set; }
 
         [Required]
         public string Image { get; set; }
