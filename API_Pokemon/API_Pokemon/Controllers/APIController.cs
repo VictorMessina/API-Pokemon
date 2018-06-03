@@ -21,9 +21,9 @@ namespace API_Pokemon.Controllers
 
             HttpResponseMessage response;
 
-            List<Pokemon> Pokemons = db.Pokemons.ToList();
+            List<Pokemon> AllPokemons = db.Pokemons.ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { Pokemons });
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { AllPokemons });
 
             response = Request.CreateResponse(HttpStatusCode.OK);
 
