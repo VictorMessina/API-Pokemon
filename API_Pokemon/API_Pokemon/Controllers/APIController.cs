@@ -53,26 +53,6 @@ namespace API_Pokemon.Controllers
 
         }
 
-        // GET pokemon/AllLegendaryPokemons
-        [Route("pokemon/AllLegendaryPokemons")]
-        [HttpGet]
-        public HttpResponseMessage AllLegendaryPokemons()
-        {
-
-            HttpResponseMessage response;
-
-            List<Pokemon> AllLegendaryPokemons = db.Pokemons.Where(x => x.Legendary.Equals(true)).ToList();
-
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { AllLegendaryPokemons });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
-
-        }
-
         // GET pokemon/PokemonByPodexNumber/PokedexNumber
         [Route("pokemon/PokemonByPodexNumber/{PokedexNumber:int}")]
         [HttpGet]
