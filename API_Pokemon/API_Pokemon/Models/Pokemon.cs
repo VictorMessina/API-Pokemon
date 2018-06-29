@@ -27,6 +27,9 @@ namespace API_Pokemon.Models
         public bool Legendary { get; set; }
 
         [Required]
+        public bool Mythical { get; set; }
+
+        [Required]
         public string Image { get; set; }
 
         [Required]
