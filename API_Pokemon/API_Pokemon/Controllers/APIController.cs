@@ -272,5 +272,25 @@ namespace API_Pokemon.Controllers
             return response;
 
         }
+
+        // GET pokemon/PokemonsByTypeNameAndGeneration/TypeName/Generation
+        [Route("pokemon/PokemonsByTypeNameAndGeneration/{TypeName:length(1,17)}/{Generation:length(1,8)}")]
+        [HttpGet]
+        public HttpResponseMessage PokemonsByTypeNameAndGeneration(string TypeName, string Generation)
+        {
+
+            HttpResponseMessage response;
+
+            List<Pokemon> PokemonsByTypeNameAndGeneration = db.Pokemons.Where(x => x.PokemonType.Description.Equals(TypeName)).Where(x => x.Generation.Equals(Generation)).ToList();
+
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonsByTypeNameAndGeneration });
+
+            response = Request.CreateResponse(HttpStatusCode.OK);
+
+            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
+
+            return response;
+
+        }
     }
 }
