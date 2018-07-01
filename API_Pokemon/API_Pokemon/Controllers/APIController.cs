@@ -173,8 +173,8 @@ namespace API_Pokemon.Controllers
 
         }
 
-        // GET pokemon/LegendaryPokemonByGeneration/Generation
-        [Route("pokemon/LegendaryPokemonByGeneration/{Generation:length(1,8)}/")]
+        // GET pokemon/LegendaryPokemonsByGeneration/Generation
+        [Route("pokemon/LegendaryPokemonsByGeneration/{Generation:length(1,8)}/")]
         [HttpGet]
         public HttpResponseMessage LegendaryPokemonByGeneration(string Generation)
         {
@@ -193,7 +193,7 @@ namespace API_Pokemon.Controllers
 
         }
 
-        // GET pokemon/MythicalPokemonByGeneration/Generation
+        // GET pokemon/MythicalPokemonsByGeneration/Generation
         [Route("pokemon/MythicalPokemonsByGeneration/{Generation:length(1,8)}/")]
         [HttpGet]
         public HttpResponseMessage MythicalPokemonByGeneration(string Generation)
