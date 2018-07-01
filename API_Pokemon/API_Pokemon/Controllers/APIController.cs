@@ -153,6 +153,28 @@ namespace API_Pokemon.Controllers
 
         }
 
+        // GET pokemon/LegendaryPokemonByGeneration/Generation
+        [Route("pokemon/LegendaryPokemonByGeneration/{Generation:length(1,8)}/")]
+        [HttpGet]
+        public HttpResponseMessage LegendaryPokemonByGeneration(string Generation)
+        {
+
+            HttpResponseMessage response;
+
+            List<Pokemon> Pokemons = db.Pokemons.Where(x => x.Generation.Equals(Generation)).ToList();
+
+            Pokemons = Pokemons.Where(x => x.Legendary.Equals(true)).ToList();
+
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { Pokemons });
+
+            response = Request.CreateResponse(HttpStatusCode.OK);
+
+            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
+
+            return response;
+
+        }
+
         // GET pokemon/PokemonByTypeID/TypeID
         [Route("pokemon/PokemonByTypeID/{TypeID:int}")]
         [HttpGet]
