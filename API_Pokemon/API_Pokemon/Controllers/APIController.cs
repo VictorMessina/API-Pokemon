@@ -181,11 +181,9 @@ namespace API_Pokemon.Controllers
 
             HttpResponseMessage response;
 
-            List<Pokemon> Pokemons = db.Pokemons.Where(x => x.Generation.Equals(Generation)).ToList();
+            List<Pokemon> LegendaryPokemonByGeneration = db.Pokemons.Where(x => x.Generation.Equals(Generation)).Where(x => x.Legendary.Equals(true)).ToList();
 
-            Pokemons = Pokemons.Where(x => x.Legendary.Equals(true)).ToList();
-
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { Pokemons });
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { LegendaryPokemonByGeneration });
 
             response = Request.CreateResponse(HttpStatusCode.OK);
 
