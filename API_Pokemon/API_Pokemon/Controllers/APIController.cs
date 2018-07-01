@@ -33,6 +33,26 @@ namespace API_Pokemon.Controllers
 
         }
 
+        // GET pokemon/AllRegions/
+        [Route("pokemon/AllRegions")]
+        [HttpGet]
+        public HttpResponseMessage AllRegions()
+        {
+
+            HttpResponseMessage response;
+
+            List<Region> AllRegions = db.Regions.ToList();
+
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { AllRegions });
+
+            response = Request.CreateResponse(HttpStatusCode.OK);
+
+            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
+
+            return response;
+
+        }
+
         // GET pokemon/AllTypes/
         [Route("pokemon/AllTypes")]
         [HttpGet]
