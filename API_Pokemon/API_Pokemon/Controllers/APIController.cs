@@ -121,9 +121,9 @@ namespace API_Pokemon.Controllers
 
             HttpResponseMessage response;
 
-            List<Pokemon> Pokemon = db.Pokemons.Where(x => x.NationalPokedexNumber == PokedexNumber).ToList();
+            List<Pokemon> PokemonByPodexNumber = db.Pokemons.Where(x => x.NationalPokedexNumber == PokedexNumber).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { Pokemon });
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonByPodexNumber });
 
             response = Request.CreateResponse(HttpStatusCode.OK);
 
@@ -141,9 +141,9 @@ namespace API_Pokemon.Controllers
 
             HttpResponseMessage response;
 
-            List<Pokemon> Pokemon = db.Pokemons.Where(x => x.Name.StartsWith(Name)).ToList();
+            List<Pokemon> PokemonByName = db.Pokemons.Where(x => x.Name.StartsWith(Name)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { Pokemon });
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonByName });
 
             response = Request.CreateResponse(HttpStatusCode.OK);
 
@@ -153,17 +153,17 @@ namespace API_Pokemon.Controllers
 
         }
 
-        // GET pokemon/PokemonByGeneration/Generation
-        [Route("pokemon/PokemonByGeneration/{Generation:length(1,8)}")]
+        // GET pokemon/PokemonsByGeneration/Generation
+        [Route("pokemon/PokemonsByGeneration/{Generation:length(1,8)}")]
         [HttpGet]
-        public HttpResponseMessage PokemonByGeneration(string Generation)
+        public HttpResponseMessage PokemonsByGeneration(string Generation)
         {
 
             HttpResponseMessage response;
 
-            List<Pokemon> Pokemons = db.Pokemons.Where(x => x.Generation.Equals(Generation)).ToList();
+            List<Pokemon> PokemonsByGeneration = db.Pokemons.Where(x => x.Generation.Equals(Generation)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { Pokemons });
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonsByGeneration });
 
             response = Request.CreateResponse(HttpStatusCode.OK);
 
@@ -176,14 +176,14 @@ namespace API_Pokemon.Controllers
         // GET pokemon/LegendaryPokemonsByGeneration/Generation
         [Route("pokemon/LegendaryPokemonsByGeneration/{Generation:length(1,8)}/")]
         [HttpGet]
-        public HttpResponseMessage LegendaryPokemonByGeneration(string Generation)
+        public HttpResponseMessage LegendaryPokemonsByGeneration(string Generation)
         {
 
             HttpResponseMessage response;
 
-            List<Pokemon> LegendaryPokemonByGeneration = db.Pokemons.Where(x => x.Generation.Equals(Generation)).Where(x => x.Legendary.Equals(true)).ToList();
+            List<Pokemon> LegendaryPokemonsByGeneration = db.Pokemons.Where(x => x.Generation.Equals(Generation)).Where(x => x.Legendary.Equals(true)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { LegendaryPokemonByGeneration });
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { LegendaryPokemonsByGeneration });
 
             response = Request.CreateResponse(HttpStatusCode.OK);
 
@@ -196,14 +196,14 @@ namespace API_Pokemon.Controllers
         // GET pokemon/MythicalPokemonsByGeneration/Generation
         [Route("pokemon/MythicalPokemonsByGeneration/{Generation:length(1,8)}/")]
         [HttpGet]
-        public HttpResponseMessage MythicalPokemonByGeneration(string Generation)
+        public HttpResponseMessage MythicalPokemonsByGeneration(string Generation)
         {
 
             HttpResponseMessage response;
 
-            List<Pokemon> MythicalPokemonByGeneration = db.Pokemons.Where(x => x.Generation.Equals(Generation)).Where(x => x.Mythical.Equals(true)).ToList();
+            List<Pokemon> MythicalPokemonsByGeneration = db.Pokemons.Where(x => x.Generation.Equals(Generation)).Where(x => x.Mythical.Equals(true)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { MythicalPokemonByGeneration });
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { MythicalPokemonsByGeneration });
 
             response = Request.CreateResponse(HttpStatusCode.OK);
 
@@ -213,17 +213,17 @@ namespace API_Pokemon.Controllers
 
         }
 
-        // GET pokemon/PokemonByTypeID/TypeID
-        [Route("pokemon/PokemonByTypeID/{TypeID:int}")]
+        // GET pokemon/PokemonsByTypeID/TypeID
+        [Route("pokemon/PokemonsByTypeID/{TypeID:int}")]
         [HttpGet]
-        public HttpResponseMessage PokemonByTypeID(int TypeID)
+        public HttpResponseMessage PokemonsByTypeID(int TypeID)
         {
 
             HttpResponseMessage response;
 
-            List<Pokemon> Pokemons = db.Pokemons.Where(x => x.PokemonTypeID == TypeID).ToList();
+            List<Pokemon> PokemonsByTypeID = db.Pokemons.Where(x => x.PokemonTypeID == TypeID).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { Pokemons });
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonsByTypeID });
 
             response = Request.CreateResponse(HttpStatusCode.OK);
 
@@ -233,17 +233,17 @@ namespace API_Pokemon.Controllers
 
         }
 
-        // GET pokemon/PokemonByTypeName/TypeName
-        [Route("pokemon/PokemonByTypeName/{TypeName:length(1,17)}")]
+        // GET pokemon/PokemonsByTypeName/TypeName
+        [Route("pokemon/PokemonsByTypeName/{TypeName:length(1,17)}")]
         [HttpGet]
-        public HttpResponseMessage PokemonByTypeName(string TypeName)
+        public HttpResponseMessage PokemonsByTypeName(string TypeName)
         {
 
             HttpResponseMessage response;
 
-            List<Pokemon> Pokemons = db.Pokemons.Where(x => x.PokemonType.Description.Equals(TypeName)).ToList();
+            List<Pokemon> PokemonsByTypeName = db.Pokemons.Where(x => x.PokemonType.Description.Equals(TypeName)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { Pokemons });
+            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonsByTypeName });
 
             response = Request.CreateResponse(HttpStatusCode.OK);
 
