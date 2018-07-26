@@ -19,8 +19,8 @@ The purpose of this initiative is to provide an API REST that will allow users t
 
 * [Pokemon](https://www.pokemon.com/us/pokedex/)
 * [Pokemondb](https://pokemondb.net/pokedex/national)
-* [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Legendary_Pok%C3%A9mon)
-* [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Mythical_Pokémon)
+* [Bulbapedia Legendary Pokemons](https://bulbapedia.bulbagarden.net/wiki/Legendary_Pok%C3%A9mon)
+* [Bulbapedia Mythical Pokemons](https://bulbapedia.bulbagarden.net/wiki/Mythical_Pokémon)
 * [Mythical Pokemon part 1](https://www.pokemon.com/us/strategy/mythical-pokemon-distribution-round-up-part-1/)
 * [Mythical Pokemon part 2](https://www.pokemon.com/us/strategy/mythical-pokemon-distribution-round-up-part-2/)
 * [Mythical Pokemon part 3](https://www.pokemon.com/us/strategy/mythical-pokemon-distribution-round-up-part-3/)
