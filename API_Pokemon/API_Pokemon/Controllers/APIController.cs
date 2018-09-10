@@ -19,17 +19,9 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage AllPokemons()
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> AllPokemons = db.Pokemons.ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { AllPokemons });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(AllPokemons);
 
         }
 
@@ -39,17 +31,9 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage AllRegions()
         {
 
-            HttpResponseMessage response;
-
             List<Region> AllRegions = db.Regions.ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { AllRegions });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(AllRegions);
 
         }
 
@@ -59,37 +43,21 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage AllTypes()
         {
 
-            HttpResponseMessage response;
-
             List<PokemonType> AllTypes = db.PokemonTypes.ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { AllTypes });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(AllTypes);
 
         }
 
-		// GET pokemon/AllLegendaryPokemons
+        // GET pokemon/AllLegendaryPokemons
         [Route("pokemon/AllLegendaryPokemons")]
         [HttpGet]
         public HttpResponseMessage AllLegendaryPokemons()
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> AllLegendaryPokemons = db.Pokemons.Where(x => x.Legendary.Equals(true)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { AllLegendaryPokemons });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(AllLegendaryPokemons);
 
         }
 
@@ -99,17 +67,9 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage AllMythicalPokemons()
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> AllMythicalPokemons = db.Pokemons.Where(x => x.Mythical.Equals(true)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { AllMythicalPokemons });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(AllMythicalPokemons);
 
         }
 
@@ -119,17 +79,9 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage PokemonByPodexNumber(int PokedexNumber)
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> PokemonByPodexNumber = db.Pokemons.Where(x => x.NationalPokedexNumber == PokedexNumber).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonByPodexNumber });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(PokemonByPodexNumber);
 
         }
 
@@ -139,17 +91,9 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage PokemonByName(string Name)
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> PokemonByName = db.Pokemons.Where(x => x.Name.StartsWith(Name)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonByName });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(PokemonByName);
 
         }
 
@@ -159,17 +103,9 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage PokemonsByGeneration(string Generation)
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> PokemonsByGeneration = db.Pokemons.Where(x => x.Generation.Equals(Generation)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonsByGeneration });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(PokemonsByGeneration);
 
         }
 
@@ -179,17 +115,9 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage LegendaryPokemonsByGeneration(string Generation)
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> LegendaryPokemonsByGeneration = db.Pokemons.Where(x => x.Generation.Equals(Generation)).Where(x => x.Legendary.Equals(true)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { LegendaryPokemonsByGeneration });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(LegendaryPokemonsByGeneration);
 
         }
 
@@ -199,17 +127,9 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage MythicalPokemonsByGeneration(string Generation)
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> MythicalPokemonsByGeneration = db.Pokemons.Where(x => x.Generation.Equals(Generation)).Where(x => x.Mythical.Equals(true)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { MythicalPokemonsByGeneration });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(MythicalPokemonsByGeneration);
 
         }
 
@@ -219,17 +139,9 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage PokemonsByTypeID(int TypeID)
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> PokemonsByTypeID = db.Pokemons.Where(x => x.PokemonTypeID == TypeID).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonsByTypeID });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(PokemonsByTypeID);
 
         }
 
@@ -239,17 +151,9 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage PokemonsByTypeIDAndGeneration(int TypeID, string Generation)
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> PokemonsByTypeIDAndGeneration = db.Pokemons.Where(x => x.PokemonTypeID == TypeID).Where(x => x.Generation.Equals(Generation)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonsByTypeIDAndGeneration });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(PokemonsByTypeIDAndGeneration);
 
         }
 
@@ -259,17 +163,9 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage PokemonsByTypeName(string TypeName)
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> PokemonsByTypeName = db.Pokemons.Where(x => x.PokemonType.Description.Equals(TypeName)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonsByTypeName });
-
-            response = Request.CreateResponse(HttpStatusCode.OK);
-
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
-
-            return response;
+            return ConvertDataToJson(PokemonsByTypeName);
 
         }
 
@@ -279,18 +175,23 @@ namespace API_Pokemon.Controllers
         public HttpResponseMessage PokemonsByTypeNameAndGeneration(string TypeName, string Generation)
         {
 
-            HttpResponseMessage response;
-
             List<Pokemon> PokemonsByTypeNameAndGeneration = db.Pokemons.Where(x => x.PokemonType.Description.Equals(TypeName)).Where(x => x.Generation.Equals(Generation)).ToList();
 
-            string SuccessResponseJson = Newtonsoft.Json.JsonConvert.SerializeObject(new { PokemonsByTypeNameAndGeneration });
+            return ConvertDataToJson(PokemonsByTypeNameAndGeneration);
+
+        }
+
+        public HttpResponseMessage ConvertDataToJson<T>(List<T> GenericList)
+        {
+            HttpResponseMessage response;
+
+            string JsonData = Newtonsoft.Json.JsonConvert.SerializeObject(new { GenericList });
 
             response = Request.CreateResponse(HttpStatusCode.OK);
 
-            response.Content = new StringContent(SuccessResponseJson, Encoding.UTF8, "application/json");
+            response.Content = new StringContent(JsonData, Encoding.UTF8, "application/json");
 
             return response;
-
         }
     }
 }
