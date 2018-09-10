@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "AllMythicalPokemons";
+}
+
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<API_Pokemon.Models.Pokemon>
+
+<h2>All Pokemons</h2>
+
+<div class="bs-component">
+    <form class="form-inline my-2 my-lg-0" asp-action:"AllMythicalPokemons" asp-controller:"Home" method="get">
+        <div class="bs-component" style="text-align:inherit; padding:2px;">
+            <b>Search By: </b>
+            @Html.RadioButton("searchBy", "Name", true)<text> Name </text> &nbsp;
+            @Html.RadioButton("searchBy", "ID") <text> National Pokedex Number </text> &nbsp;
+            @Html.RadioButton("searchBy", "Region") <text> Region </text> &nbsp;
+            @Html.RadioButton("searchBy", "Generation") <text> Generation </text> &nbsp;
+        </div>
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+</div>
+
+<div>
+
+    @foreach (var pokemon in Model)
+    {
+        <hr />
+
+        <div class="clearfix">
+            <div class="box">
+                <p> <img src="@pokemon.Image.ToString()" /> </p>
+            </div>
+            <div class="box">
+
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        @Html.DisplayNameFor(model => pokemon.PokemonType)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => pokemon.PokemonType.Description)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => pokemon.Region)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => pokemon.Region.Description)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => pokemon.NationalPokedexNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => pokemon.NationalPokedexNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => pokemon.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => pokemon.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => pokemon.Generation)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => pokemon.Generation)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => pokemon.Evolve)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => pokemon.Evolve)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => pokemon.Legendary)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => pokemon.Legendary)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => pokemon.Mythical)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => pokemon.Mythical)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    }
+
+    @Html.PagedListPager(Model, page => Url.Action("AllMythicalPokemons", new { page, searchBy = Request.QueryString["searchBy"], search = Request.QueryString["search"] }), new PagedListRenderOptions()
+    {
+        Display = PagedListDisplayMode.IfNeeded,
+        ContainerDivClasses = new[] { "bs-component" },
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-link" },
+        DisplayPageCountAndCurrentLocation = true
+    })
+
+</div>
+<p>
+    @Html.ActionLink("Back to home page", "Index")
+</p>
